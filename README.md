@@ -10,6 +10,7 @@
       - [To update the section](#to-update-the-section)
       - [To delete the section](#to-delete-the-section)
       - [To create new section](#to-create-new-section)
+      - [To update task](#to-update-task)
     - [Run Test](#run-test)
   - [👥 Authors ](#-authors-)
   - [🤝 Contributing ](#-contributing-)
@@ -54,7 +55,7 @@ class HomesController < ApplicationController
  Use get_sections method like below 
 
 ```ruby
- get_sections
+ get_section(project_id)
 
  ```
 #### To update the section 
@@ -62,7 +63,7 @@ class HomesController < ApplicationController
  Use update_section method like below 
 
 ```ruby
- update_section(id, name)
+ update_section(section_id, name)
  
  ```
 #### To delete the section 
@@ -70,7 +71,7 @@ class HomesController < ApplicationController
  Use delete_section method like below 
 
 ```ruby
- delete_section(id)
+ delete_section(section_id)
  
  ```
 
@@ -79,7 +80,15 @@ class HomesController < ApplicationController
  Use create_section method like below 
 
 ```ruby
- create_section(name)
+ create_section(project_id, name)
+
+ ```
+#### To update task
+ 
+ Use create_section method like below 
+
+```ruby
+ update_task(task_id, name)
 
  ```
  ### Run Test
