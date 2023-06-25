@@ -2,8 +2,6 @@
 <a name="readme-top"></a>
 
 # 📗 Table of Contents
-[![json_or_ruby_to_ - csv](https://img.shields.io/badge/json__or__ruby__to__-csv-2ea44f)](https://rubygems.org/gems/json_or_ruby_to_csv)
-
 - [📗 Table of Contents](#-table-of-contents)
 - [📖 api\_for\_asana ](#-api_for_asana-)
   - [Installation ](#installation-)
