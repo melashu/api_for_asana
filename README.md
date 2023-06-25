@@ -10,6 +10,7 @@
       - [To update the section](#to-update-the-section)
       - [To delete the section](#to-delete-the-section)
       - [To create new section](#to-create-new-section)
+    - [Run Test](#run-test)
   - [👥 Authors ](#-authors-)
   - [🤝 Contributing ](#-contributing-)
   - [⭐️ Show your support ](#️-show-your-support-)
@@ -23,12 +24,12 @@ This gem is an API wrapper for interacting with Asana. It allows me to create se
 Add the following code to you Gemfile 
 
 ```ruby
-gem api_for_asana
+gem 'api_for_asana'
 ```
 
 Then run 
 
-`bundler`
+`bundler install`
     
 
 ### Usage
@@ -81,6 +82,10 @@ class HomesController < ApplicationController
  create_section(name)
 
  ```
+ ### Run Test
+  on your terminal run 
+ `rspec spec`
+
 ## 👥 Authors <a name="authors"></a>
 
  👤 Melashu Amare
