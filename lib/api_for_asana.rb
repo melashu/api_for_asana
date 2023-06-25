@@ -46,6 +46,16 @@ module ApiForAsana
     end
   end
 
+  def update_task(id, name)
+    uri = URI("https://app.asana.com/api/1.0/tasks/#{id}")
+    req = Net::HTTP::Put.new(uri)
+    req['Authorization'] = token
+    req.set_form_data(name: name)
+    Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+      http.request(req)
+    end
+  end
+
   private
 
   def project_url

@@ -73,6 +73,18 @@ describe 'ApiForAsana' do
     end
 
   end
+  context 'When we try to update the task with wrong id' do
+    it 'should return status code 404' do
+      res = dummy.update_task('12048846103271', 'Draft Logo')
+      expect(res.code).to eq('404')
+    end
+  end
+  context 'When we try to update the task with valid task id' do
+    it 'should return status code 200' do
+      res = dummy.update_task('1204884611102860', 'Draft Logo')
+      expect(res.code).to eq('200')
+    end
+  end
 
   context 'When we try to create new section' do
 
