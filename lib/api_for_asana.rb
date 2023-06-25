@@ -1,72 +1,52 @@
 require 'net/http'
+require 'dotenv'
+require_relative './api_for_asana/helper'
+
 module ApiForAsana
-    
-  def get_sections
-    req = Net::HTTP::Get.new(project_url)
-    req['Authorization'] = token
-    Net::HTTP.start(project_url.hostname, project_url.port, use_ssl: true) do |http|
-      http.request(req)
-    end
-  end
-
-  def get_tasks(id)
-    uri = URI("https://app.asana.com/api/1.0/sections/#{id}/tasks")
+  include Helper
+  Dotenv.load
+  def get_section(project_id)
+    uri = URI("#{base_url}/projects/#{project_id}/sections")
     req = Net::HTTP::Get.new(uri)
-    req['Authorization'] = token
-    Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-      http.request(req)
-    end
+    send_http_request(req, uri)
   end
 
-  def update_section(id, name)
-    uri = section_url(id)
+  def get_tasks(task_id)
+    uri = URI("#{base_url}/sections/#{task_id}/tasks")
+    req = Net::HTTP::Get.new(uri)
+    send_http_request(req, uri)
+  end
+
+  def update_section(section_id, name)
+    uri = URI("#{base_url}/sections/#{section_id}")
     req = Net::HTTP::Put.new(uri)
-    req['Authorization'] = token
     req.set_form_data(name: name)
-    Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-      http.request(req)
-    end
+    send_http_request(req, uri)
   end
 
-  def create_section(name)
-    req = Net::HTTP::Post.new(project_url)
-    req['Authorization'] = token
+  def create_section(project_id, name)
+    uri = URI("#{base_url}/projects/#{project_id}/sections")
+    req = Net::HTTP::Post.new(uri)
     req.set_form_data(name: name)
-    Net::HTTP.start(project_url.hostname, project_url.port, use_ssl: true) do |http|
-      http.request(req)
-    end
+    send_http_request(req, uri)
   end
 
   def delete_section(id)
-    uri = section_url(id)
+    uri = URI("#{base_url}/sections/#{id}")
     req = Net::HTTP::Delete.new(uri)
-    req['Authorization'] = token
-    Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-      http.request(req)
-    end
+    send_http_request(req, uri)
   end
 
   def update_task(id, name)
-    uri = URI("https://app.asana.com/api/1.0/tasks/#{id}")
+    uri = URI("#{base_url}/tasks/#{id}")
     req = Net::HTTP::Put.new(uri)
-    req['Authorization'] = token
     req.set_form_data(name: name)
-    Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-      http.request(req)
-    end
+    send_http_request(req, uri)
   end
 
   private
 
-  def project_url
-    URI('https://app.asana.com/api/1.0/projects/1204884610326667/sections')
-  end
-
-  def token
-    'Bearer 1/1204884589111623:bcd5f3b78ab8580dab44dda843374ad5'
-  end
-
-  def section_url(id)
-    URI("https://app.asana.com/api/1.0/sections/#{id}")
+  def base_url
+    'https://app.asana.com/api/1.0'
   end
 end
