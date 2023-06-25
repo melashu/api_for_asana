@@ -31,14 +31,14 @@ module ApiForAsana
     send_http_request(req, uri)
   end
 
-  def delete_section(id)
-    uri = URI("#{base_url}/sections/#{id}")
+  def delete_section(section_id)
+    uri = URI("#{base_url}/sections/#{section_id}")
     req = Net::HTTP::Delete.new(uri)
     send_http_request(req, uri)
   end
 
-  def update_task(id, name)
-    uri = URI("#{base_url}/tasks/#{id}")
+  def update_task(task_id, name)
+    uri = URI("#{base_url}/tasks/#{task_id}")
     req = Net::HTTP::Put.new(uri)
     req.set_form_data(name: name)
     send_http_request(req, uri)
