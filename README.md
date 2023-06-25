@@ -25,7 +25,7 @@ This gem is an API wrapper for interacting with Asana. It allows me to create se
 Add the following code to you Gemfile 
 
 ```ruby
-gem install api_for_asana
+gem api_for_asana
 ```
 
 Then run 
