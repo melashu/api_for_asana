@@ -5,15 +5,19 @@ require_relative './api_for_asana/helper'
 module ApiForAsana
   include Helper
   Dotenv.load
-  def get_section(project_id)
+  def get_section(project_id, limit)
     uri = URI("#{base_url}/projects/#{project_id}/sections")
     req = Net::HTTP::Get.new(uri)
+    params = { limit: limit }
+    uri.query = URI.encode_www_form(params)
     send_http_request(req, uri)
   end
 
-  def get_tasks(task_id)
+  def get_tasks(task_id, limit)
     uri = URI("#{base_url}/sections/#{task_id}/tasks")
     req = Net::HTTP::Get.new(uri)
+    params = { limit: limit }
+    uri.query = URI.encode_www_form(params)
     send_http_request(req, uri)
   end
 
